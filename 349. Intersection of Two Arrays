@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        sort(nums1.begin(), nums1.end());
+        sort(nums2.begin(), nums2.end());
+        int len_1 = nums1.size();
+        int len_2 = nums2.size();
+        int mark;
+        vector<int> a;
+        for(int i = 0, j = 0; i < len_1 && j < len_2;){
+            if(nums1[i] < nums2[j]){
+                i++;
+            }
+            else if(nums1[i] > nums2[j]){
+                j++;
+            }
+            else if(nums1[i] == nums2[j]){
+                if(a.size() == 0 || nums1[i] != mark){
+                    //为空或者是有重复元素的时候才可以push
+                    a.push_back(nums1[i]);
+                    mark = nums1[i];
+                }
+                i++;
+                j++;
+            }
+        }
+        return a;
+    }
+};
