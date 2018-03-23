@@ -1,0 +1,21 @@
+//fibonacci
+class Solution {
+public:
+    int climbStairs(int n) {
+        int stepone = 1;
+        int steptwo = 2;
+        if(n <= 0)
+            return 0;
+        if(n == 1)
+            return stepone;
+        if(n == 2)
+            return steptwo;
+        int res = 0;
+        for(int i = 3; i <= n; i++){
+            res = stepone + steptwo;
+            stepone = steptwo;
+            steptwo = res;
+        }
+        return res;
+    }
+};
