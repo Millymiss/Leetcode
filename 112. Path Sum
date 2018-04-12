@@ -1,0 +1,20 @@
+/**
+ *显然深搜求解，简单高效。注意叶子节点的定义，当且仅当左右孩子都为空时，才是叶子节点。如果一个节点有一个孩子时，是不能作为leaf的。
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int sum) {
+        if(root == nullptr)
+            return false;
+        if(root->val == sum && root->left == nullptr && root->right == nullptr)
+            return true;
+        return hasPathSum(root->left, sum - root->val) || hasPathSum(root->right, sum - root->val);
+    }
+};
