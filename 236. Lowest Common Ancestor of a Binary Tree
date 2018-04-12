@@ -1,0 +1,22 @@
+/**
+ * 遍历每一个节点，看他的左子树中是否有p或者q，再看他的右子树是否有p或者q。如果都返回有，说明当前这个节点就是他们的公共父节点。否则返回不为空的那个子树。
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(!root || p == root || q == root)
+            return root;
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+        if(left && right)
+            return root;
+        return left ? left : right;
+    }
+};
